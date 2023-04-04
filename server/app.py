@@ -47,6 +47,10 @@ def remove(img):
     else:
         return {"msg": 'does not exist'}
 
+@app.route("/hello", methods=['GET'])
+def hello():
+        return {"msg": 'hello'}
+
 
 if __name__ == '__main__':
     app.run(debug=True)
