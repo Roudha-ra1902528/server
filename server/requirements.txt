@@ -1,0 +1,38 @@
+
+TO RUN NEXTJS CLIENT
+---------------------
+
+npm run dev
+
+
+TO RUN FLASK SERVER
+---------------------
+
+conda deactivate 
+
+. venv/bin/activate
+
+pip install Flask flask_cors click requests tqdm pyspng ninja imageio-ffmpeg==0.4.3 ffmpeg
+pip3 install torch torchvision torchaudio
+
+flask run
+
+
+
+
+
+
+
+python closed_form_factorization.py --out=/Users/roudhalrumaihi/Desktop/IPattern/server/out/ladiesblack-cff.pt --ckpt=/Users/roudhalrumaihi/Desktop/IPattern/server/model/metfaces.pkl
+
+python apply_factor.py -i 10 --seeds 10 --ckpt /Users/roudhalrumaihi/Desktop/IPattern/server/model/metfaces.pkl /Users/roudhalrumaihi/Desktop/IPattern/server/out/ladiesblack-cff.pt --output=/Users/roudhalrumaihi/Desktop/IPattern/server/out --video
+
+python generate2.py --outdir=/Users/roudhalrumaihi/Desktop/IPattern/server/out --space="z" --trunc=0.5 --process="interpolation" --seeds=463,470 --network=/Users/roudhalrumaihi/Desktop/IPattern/server/model/metfaces.pkl --frames=100
+
+python projector.py --network=/Users/roudhalrumaihi/Desktop/IPattern/server/model/metfaces.pkl --outdir=/Users/roudhalrumaihi/Desktop/IPattern/server/out --target=/Users/roudhalrumaihi/Desktop/IPattern/server/out/seed451.png --num-steps=200 --seed=0
+
+python generate2.py --outdir=/Users/roudhalrumaihi/Desktop/IPattern/server/out --trunc=0.5 --seeds=463,470 --network=/Users/roudhalrumaihi/Desktop/IPattern/server/model/network-snapshot-003000.pkl
+
+python generate.py --network_pkl=/Users/roudhalrumaihi/Desktop/IPattern/server/model/network-snapshot-003000.pkl --seeds=463,470 --truncation_psi=0.5 --noise_mode=const --outdir=/Users/roudhalrumaihi/Desktop/IPattern/server/out --class_idx=None --projected_w=None
+
+   generate_images('model/metfaces.pkl',[int(seed)],float(trun),'const','out',None,None)
