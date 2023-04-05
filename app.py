@@ -1,6 +1,6 @@
 from flask import Flask, send_file, render_template, jsonify, request
 from flask_cors import CORS
-from generate import generate_images
+# from generate import generate_images
 from PIL import Image
 import os
 import base64
@@ -21,19 +21,19 @@ def gen():
     seed = request.args.get('seed')
     trun = request.args.get('trun')
 
-    generate_images('model/metfaces.pkl',[int(seed)],float(trun),'const','out',None,None)
+    # generate_images('model/metfaces.pkl',[int(seed)],float(trun),'const','out',None,None)
 
     return { "msg": 'generated' }
 
 
 @app.route("/get/<img>")
 def get(img):
-    file = f'out/seed{img}.png'
+    # file = f'out/seed{img}.png'
 
-    im = Image.open(file)
-    data = io.BytesIO()
-    im.save(data, "JPEG")
-    encoded_img_data = base64.b64encode(data.getvalue())
+    # im = Image.open(file)
+    # data = io.BytesIO()
+    # im.save(data, "JPEG")
+    # encoded_img_data = base64.b64encode(data.getvalue())
 
     return {
         "msg": encoded_img_data.decode('utf-8'),
