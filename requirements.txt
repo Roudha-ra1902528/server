@@ -1,5 +1,5 @@
 jax[cpu]==0.3.10
-torch==1.9.0+cu111
+torch==1.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 torchvision==0.10.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 timm==0.4.12
 ftfy==6.1.1
